@@ -1,0 +1,1 @@
+ALTER TABLE KISI add  SIFRE varchar(25) 
