@@ -3,8 +3,12 @@ package controller.urun;
 
 import model.urun.Urun;
 import hibernate.HbmIslemler;
+
 import java.util.List;
+
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 import org.hibernate.HibernateException;
 
 /**
@@ -20,12 +24,13 @@ public class UrunC implements UrunI{
     
         if(urunAdi.equals("") )
             JOptionPane.showMessageDialog(null, 
-                    "Urun adÄ± boÅŸ olamaz!", "Hata", JOptionPane.ERROR_MESSAGE);
+                    "Urun adý boþ olamaz!", "Hata", JOptionPane.ERROR_MESSAGE);
         else if(birimFiyat < 0)
             JOptionPane.showMessageDialog(null, 
-                    "Urun fiyatÄ± 0'dan kÃ¼Ã§Ã¼k olamaz!", "Hata", JOptionPane.ERROR_MESSAGE);
-        else
-            urunEkle(new Urun(barkod, stok, birimFiyat, urunAdi));
+                    "Urun fiyatý 0'dan küçük olamaz!", "Hata", JOptionPane.ERROR_MESSAGE);
+        else{
+        	urunEkle(new Urun(barkod, stok, birimFiyat, urunAdi));
+        }
     }
     
     @Override
@@ -34,12 +39,12 @@ public class UrunC implements UrunI{
             urun.urunEkle(urun);
             
             JOptionPane.showMessageDialog(null,
-                    urun.getUrunAdi() + " Ã¼rÃ¼nÃ¼ eklendi!",
+                    urun.getUrunAdi() + " ürünü eklendi!",
                     "Ekle", JOptionPane.INFORMATION_MESSAGE);
         } catch (HibernateException ex) {
             
             JOptionPane.showMessageDialog(null,
-                    urun.getUrunAdi() + " Ã¼rÃ¼nÃ¼ eklenemiyor!",
+                    urun.getUrunAdi() + " ürünü eklenemiyor!",
                     "Hata", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -50,46 +55,77 @@ public class UrunC implements UrunI{
         return urun.urunListesi();
     }
     
+    public DefaultTableModel urunListesiModel(){
+    	
+    	DefaultTableModel dtm = new DefaultTableModel();
+    	
+    	dtm.addColumn("Ürün Adý");
+    	dtm.addColumn("Barkod");
+    	dtm.addColumn("Birim Fiyatý");
+    	dtm.addColumn("Stok");
+    	
+    	List<Urun> urunList = urunListesi();
+    	
+    	for(Urun u : urunList){
+    		dtm.addRow(new String[]{	u.getUrunAdi(), 
+    									u.getBarkod()+"", 
+    									u.getBirimFiyat() + " TL", 
+    									u.getStok() + ""
+									});
+    	}
+    	
+    	return dtm;
+    }
+    
 
-    @Override
+    @SuppressWarnings("finally")
+	@Override
     public boolean urunSil(String urunAdi) {
+        int cevap = JOptionPane.showConfirmDialog(null, 
+        						urunAdi + " Ürününü silmek istedðinize emin misiniz?", 
+    							"Sil", JOptionPane.YES_NO_OPTION, 
+    							JOptionPane.QUESTION_MESSAGE);
         
-        try {
-            Urun urun = new Urun();
-            if (urun.urunSil(urunAdi)) {
-                JOptionPane.showMessageDialog(null,
-                        urunAdi + " no'lu Ã¼rÃ¼n silindi!",
-                        "Sil", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        urunAdi + " no'lu Ã¼rÃ¼n bulunamadÄ±!",
-                        "Hata", JOptionPane.WARNING_MESSAGE);
-            }
-        } catch (HibernateException ex) {
-            JOptionPane.showMessageDialog(null, 
-                    urunAdi + " no'lu Ã¼rÃ¼n silinmesi sÄ±rasÄ±nda hata oluÅŸtu!", 
-                    "Hata", JOptionPane.ERROR_MESSAGE);
-        }finally{
-            return false;
+        if(cevap == JOptionPane.YES_OPTION){
+	        try {
+	            Urun urun = new Urun();
+	            if (urun.urunSil(urunAdi)) {
+	                JOptionPane.showMessageDialog(null,
+	                        urunAdi + " no'lu ürün silindi!",
+	                        "Sil", JOptionPane.INFORMATION_MESSAGE);
+	                return true;
+	            } else {
+	                JOptionPane.showMessageDialog(null,
+	                        urunAdi + " no'lu ürün bulunamadý!",
+	                        "Hata", JOptionPane.WARNING_MESSAGE);
+	            }
+	        } catch (HibernateException ex) {
+	            JOptionPane.showMessageDialog(null, 
+	                    urunAdi + " no'lu ürün silinmesi sýrasýnda hata oluþtu!", 
+	                    "Hata", JOptionPane.ERROR_MESSAGE);
+	            
+	        }
         }
+        return false;
     }
 
-    @Override
+    @SuppressWarnings("finally")
+	@Override
     public boolean urunGuncelle(String urunAdi, Urun yeniUrun) {
         try {
             Urun urun = new Urun();
             if (urun.urunGuncelle(urunAdi, yeniUrun)) {
                 JOptionPane.showMessageDialog(null,
-                        urunAdi + " no'lu Ã¼rÃ¼n GÃ¼ncellendi!",
-                        "GÃ¼ncelleme", JOptionPane.INFORMATION_MESSAGE);
+                        urunAdi + " no'lu ürün Güncellendi!",
+                        "Güncelleme", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null,
-                        urunAdi + " no'lu Ã¼rÃ¼n bulunamadÄ±!",
+                        urunAdi + " no'lu ürün bulunamadý!",
                         "Hata", JOptionPane.WARNING_MESSAGE);
             }
         } catch (HibernateException ex) {
             JOptionPane.showMessageDialog(null, 
-                    urunAdi + " no'lu Ã¼rÃ¼n gÃ¼ncellenmesi sÄ±rasÄ±nda hata oluÅŸtu!", 
+                    urunAdi + " no'lu ürün güncellenmesi sýrasýnda hata oluþtu!", 
                     "Hata", JOptionPane.ERROR_MESSAGE);
         }finally{
             return false;
@@ -108,12 +144,12 @@ public class UrunC implements UrunI{
                 urun.urunSat(urunAdi, miktar);
             else
                 JOptionPane.showMessageDialog(null, 
-                    "Yeterli miktar bulunmamaktadÄ±r.!",
+                    "Yeterli miktar bulunmamaktadýr.!",
                     "Hata", JOptionPane.ERROR_MESSAGE); 
         
         }else
             JOptionPane.showMessageDialog(null, 
-                    "Urun miktarÄ± negatif olamaz!",
+                    "Urun miktarý negatif olamaz!",
                     "Hata", JOptionPane.ERROR_MESSAGE); 
         
     }
@@ -126,7 +162,7 @@ public class UrunC implements UrunI{
         
         }else
             JOptionPane.showMessageDialog(null, 
-                    "Urun miktarÄ± negatif olamaz!",
+                    "Urun miktarý negatif olamaz!",
                     "Hata", JOptionPane.ERROR_MESSAGE); 
         
     }

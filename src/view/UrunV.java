@@ -3,7 +3,9 @@ package view;
 
 
 import java.util.List;
+
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -177,11 +179,14 @@ public class UrunV extends javax.swing.JFrame {
             String urunAdi = txtUrunAdi.getText().trim();
             int barkod = Integer.parseInt(txtBarkod.getText().trim());            
             Double birimFiyati = Double.parseDouble(txtBirimFiyati.getText().trim());
-            int stok = spnStok.getComponentCount() + 1;
+            int stok = (Integer) spnStok.getValue();
             
             mutlakkafe.MutlakKafe.mainCont.getUrunCont()
                     .urunEkle(barkod, stok, birimFiyati, urunAdi);
+           
             temizle();
+            
+            tblUrunList.setModel(mutlakkafe.MutlakKafe.mainCont.getUrunCont().urunListesiModel());
             
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Geçersiz alan. \n"
@@ -195,7 +200,11 @@ public class UrunV extends javax.swing.JFrame {
 
         String urunAdi = (String) tblUrunList.getValueAt(tblUrunList.getSelectedRow(), 0);
         
-        mutlakkafe.MutlakKafe.mainCont.getUrunCont().urunSil(urunAdi);
+        if(mutlakkafe.MutlakKafe.mainCont.getUrunCont().urunSil(urunAdi)){
+        	DefaultTableModel dtm = (DefaultTableModel) tblUrunList.getModel();
+        	dtm.removeRow(tblUrunList.getSelectedRow());
+        	tblUrunList.setModel(dtm);
+        }
         
     }
 
@@ -205,8 +214,7 @@ public class UrunV extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {
         
-        List<model.urun.Urun> urunList = mutlakkafe.MutlakKafe.
-                                    mainCont.getUrunCont().urunListesi();       
+    	tblUrunList.setModel(mutlakkafe.MutlakKafe.mainCont.getUrunCont().urunListesiModel());
     }
 
     
@@ -216,6 +224,8 @@ public class UrunV extends javax.swing.JFrame {
         txtBarkod.setText("");
         spnStok.setValue(0);
     }
+    
+    
     
     public static void main(String args[]) {
         

@@ -1,5 +1,9 @@
 
 package view;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -19,7 +23,6 @@ public class GirisV extends javax.swing.JFrame {
         lblKullaniciAdi = new javax.swing.JLabel();
         lblSifre = new javax.swing.JLabel();
         txtKullaniciAdi = new javax.swing.JTextField();
-        txtSifre = new javax.swing.JTextField();
         btnGirisYap = new javax.swing.JButton();
         btnVazgec = new javax.swing.JButton();
 
@@ -37,45 +40,47 @@ public class GirisV extends javax.swing.JFrame {
         });
 
         btnVazgec.setText("Vazgeç");
+        
+        txtSifre = new JPasswordField();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblKullaniciAdi)
-                            .addComponent(lblSifre))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtKullaniciAdi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSifre, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGirisYap)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnVazgec)))
-                .addContainerGap(47, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(46)
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(lblKullaniciAdi)
+        						.addComponent(lblSifre))
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(txtSifre, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(txtKullaniciAdi, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(btnGirisYap)
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addComponent(btnVazgec)))
+        			.addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblKullaniciAdi)
-                    .addComponent(txtKullaniciAdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSifre)
-                    .addComponent(txtSifre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGirisYap)
-                    .addComponent(btnVazgec))
-                .addContainerGap(44, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(38)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblKullaniciAdi)
+        				.addComponent(txtKullaniciAdi, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(18)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblSifre)
+        				.addComponent(txtSifre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(18)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(btnGirisYap)
+        				.addComponent(btnVazgec))
+        			.addContainerGap(44, Short.MAX_VALUE))
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }
@@ -85,7 +90,7 @@ public class GirisV extends javax.swing.JFrame {
         String sifre = txtSifre.getText().trim();
         
         if(mutlakkafe.MutlakKafe.mainCont.getKisiCont().girisYap(kulAdi, sifre)){
-            System.out.println("Eyvallah gardaÅŸ.");
+            
         }
     }
 
@@ -123,6 +128,5 @@ public class GirisV extends javax.swing.JFrame {
     private javax.swing.JLabel lblKullaniciAdi;
     private javax.swing.JLabel lblSifre;
     private javax.swing.JTextField txtKullaniciAdi;
-    private javax.swing.JTextField txtSifre;
-    // End of variables declaration//GEN-END:variables
+    private JPasswordField txtSifre;
 }

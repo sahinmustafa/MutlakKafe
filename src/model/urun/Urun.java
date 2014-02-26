@@ -22,7 +22,7 @@ public class Urun implements UrunI{
         this.barkod = barkod;
         this.stok = stok;
         this.birimFiyat = birimFiyat;
-        this.urunAdi = urunAdi;
+        this.urunAdi = urunAdi.toUpperCase();
     }
     
     

@@ -3,7 +3,9 @@ package controller.kisi;
 
 import model.kisi.Calisan;
 import model.kisi.Kisi;
+
 import javax.swing.JOptionPane;
+
 import view.AnaEkranV;
 
 /**
@@ -13,7 +15,8 @@ import view.AnaEkranV;
 public class KisiC implements KisiI{
     private Calisan kullanici;
     
-     @Override
+     @SuppressWarnings("deprecation")
+	@Override
     public boolean girisYap(String kullaniciAdi, String sifre) {
          if (!kullaniciAdi.isEmpty() && !sifre.isEmpty()) {
              kullanici = new Calisan();
@@ -24,11 +27,11 @@ public class KisiC implements KisiI{
                  ana.show();
                  return true;
              }
-              JOptionPane.showMessageDialog(null, "YanlÄ±s kullanÄ±cÄ± adÄ± sifre",
+              JOptionPane.showMessageDialog(null, "Yanlýs kullanýcý adý sifre",
                         "Hata", JOptionPane.ERROR_MESSAGE);
          }
          else 
-             JOptionPane.showMessageDialog(null, "LÃ¼tfen alanlarÄ± doldurunuz.",
+             JOptionPane.showMessageDialog(null, "Lütfen alanlarý doldurunuz.",
                         "Hata", JOptionPane.ERROR_MESSAGE);
          return false;
         
