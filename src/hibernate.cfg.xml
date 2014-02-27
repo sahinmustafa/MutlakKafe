@@ -4,7 +4,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
     <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
-    <property name="hibernate.connection.url">jdbc:derby:C:\Users\Mustafa-Bilgisay\workspace\MutlakKafe\Database\MyDB;create=true</property>
+    <property name="hibernate.connection.url">jdbc:derby:C:\Users\yetishbey\workspace\MutlakKafe\Database\MyDB;create=true</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">pass</property>
     <mapping resource="orm/Kisi.hbm.xml"/>
