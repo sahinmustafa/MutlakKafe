@@ -24,6 +24,12 @@ public class Bilgisayar {
         return true;
     }
     
+    public boolean siparisEkle(Urun urun){
+    	
+    	return true;
+    }
+    
+    
     public boolean masaAc(int sureSiniri){
         masaAc();
         this.sureSiniri = sureSiniri;
