@@ -3,6 +3,7 @@ package mutlakkafe;
 import view.GirisV;
 import controller.MainC;
 
+
 public class MutlakKafe {
 
 	public static MainC mainCont;
@@ -12,6 +13,7 @@ public class MutlakKafe {
 
         GirisV g = new GirisV();
         g.show();
+        
     }
 }
 	

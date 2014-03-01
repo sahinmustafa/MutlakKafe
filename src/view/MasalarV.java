@@ -17,9 +17,13 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
+
+import mutlakkafe.MutlakKafe;
 
 /**
  *
@@ -82,12 +86,24 @@ public class MasalarV extends javax.swing.JPanel {
             jLabel1.setComponentPopupMenu(getPopUpMenu(jLabel1.getText()));
                  
         
-            labeller.add(jLabel1);
-            //Oluþturulan labeli konteynýrýna ekler
-            this.add(jLabel1);
+            //Bilgisayar controllerinde bilgisayarý oluþturur. Baþarýlý ise viewe ekle
+            if(mutlakkafe.MutlakKafe.mainCont.getBilgisayarC().masaEkle(masaAdi)){
+            	//labeli labeller dizisine atar
+            	labeller.add(jLabel1);
+            	//Oluþturulan labeli konteynýrýna ekler
+                this.add(jLabel1);
+            }
+            
+            
     }
     
- 
+    
+    private void masaAc(String masaAdi){
+    	if(mutlakkafe.MutlakKafe.mainCont.getBilgisayarC().masaAc(masaAdi)){
+     		durumDegis(masaAdi, Durum.ACIK);
+    	}
+    }
+    
     
     private void jLabelMouseClicked(java.awt.event.MouseEvent evt) { 
         seciliMasaDegis((JLabel) evt.getSource());
@@ -108,15 +124,19 @@ public class MasalarV extends javax.swing.JPanel {
         seciliLabel.setOpaque(true);
         seciliLabel.setForeground(Color.blue);
         seciliLabel.setBackground(Color.lightGray);
+        
+        //!!!!seçili bilgisayar bilgilerini göster
     }
     
     //Program çalýþma esnasýnda bir masayý siler
     public void masaSil(String masaAdi){
-            JLabel jLabel1 = masaBul(masaAdi);
-        
-            labeller.remove(jLabel1); 
+        JLabel jLabel1 = masaBul(masaAdi);
+    
+        if(mutlakkafe.MutlakKafe.mainCont.getBilgisayarC().masaSil(masaAdi)){
+        	labeller.remove(jLabel1); 
             //Silinen labeli konteynýrýndan siler
             this.remove(jLabel1);
+        }          
     }
   
     //Masa isminden masaya ait JLabel nesnesini döndürür
@@ -155,11 +175,22 @@ public class MasalarV extends javax.swing.JPanel {
     ActionListener menuListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-            System.out.println(seciliLabel.getText()+ "["+ event.getActionCommand() + "] týklandý");
+            //System.out.println(seciliLabel.getText()+ "["+ event.getActionCommand() + "] týklandý");            
+            switch(event.getActionCommand()){
+            	case "Masa Aç":
+            		masaAc(seciliLabel.getText());
+            		System.out.println(seciliLabel.getText()+ "Açýldý");
+            		break;
+            	case "Masa Kapat":
+            		System.out.println(seciliLabel.getText()+ "Kapandý");
+            		break;
+            	case "Süreli Aç":
+            		break;
+            }
         }
     };
     
-    //Popup menu içeriÄŸi
+    //Popup menu içeriði
     private JPopupMenu getPopUpMenu(String masaAdi){
         String [] liste = {"-","Masa Aç", "Süreli Aç","Masa Kapat"};
         JPopupMenu popup = new JPopupMenu();
