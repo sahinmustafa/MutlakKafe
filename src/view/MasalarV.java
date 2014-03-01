@@ -175,12 +175,7 @@ public class MasalarV extends javax.swing.JPanel {
     ActionListener menuListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
-            //System.out.println(seciliLabel.getText()+ "["+ event.getActionCommand() + "] týklandý");
-            masaAc(seciliLabel.getText());
-            if(event.getActionCommand().equals("Masa Aç")){
-            	System.out.println(seciliLabel.getText()+ "Açýldý");
-            }
-            /*
+            //System.out.println(seciliLabel.getText()+ "["+ event.getActionCommand() + "] týklandý");            
             switch(event.getActionCommand()){
             	case "Masa Aç":
             		masaAc(seciliLabel.getText());
@@ -192,7 +187,6 @@ public class MasalarV extends javax.swing.JPanel {
             	case "Süreli Aç":
             		break;
             }
-            */
         }
     };
     

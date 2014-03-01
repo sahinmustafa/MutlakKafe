@@ -20,7 +20,7 @@ public class AnaEkranV extends javax.swing.JFrame {
     public AnaEkranV() {
         initComponents();
         
-        String masaAdlari[] = {"Masa 1", "Masa 2", "Masa 3", "Masa 4", "Masa 5","Masa 6"};
+        String masaAdlari[] = {"Masa 9", "Masa 2", "Masa 3", "Masa 4", "Masa 5","Masa 6"};
 
         masalar1.init(masaAdlari);
         masalar1.masaEkle("Masa X");
