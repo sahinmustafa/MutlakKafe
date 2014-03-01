@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.sira.Sira" table="SIRA">
+        <id name = "siraNo" column="SIRA_NO">
+            <generator class="increment"/>
+        </id>
+        
+        <property name="ad" column="AD" type = "string" />
+        <property name="soyad" column="SOYAD" type = "string" />
+        <property name="telefon" column="TELEFON" type = "int" />
+        <property name="masaNo" column="MASA_NO" type = "int" />
+        <property name="baslangicSaat" column="BASLANGIC_SAAT" type = "string" />
+        <property name="bitisSaat" column="BITIS_SAAT" type = "string" />
+          
+        
+    </class>
+ 
+</hibernate-mapping>
