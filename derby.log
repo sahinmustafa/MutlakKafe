@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Fri Feb 28 23:10:24 EET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0144-7a55-71a1-0000048d0ff0 
-on database directory C:\Users\yetishbey\workspace\MutlakKafe\Database\MyDB  with class loader sun.misc.Launcher$AppClassLoader@4de8b671 
+Sat Mar 01 22:34:07 EET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-0144-7f5a-98b6-0000048d6e18 
+on database directory C:\Users\yetishbey\workspace\MutlakKafe\Database\MyDB  with class loader sun.misc.Launcher$AppClassLoader@709db0ad 
 Loaded from file:/C:/Users/yetishbey/workspace/MutlakKafe/lib/derby/derby/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_51-b13

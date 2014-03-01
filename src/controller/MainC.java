@@ -2,32 +2,28 @@ package controller;
 
 import java.util.ArrayList;
 
+import controller.bilgisayar.BilgisayarC;
 import controller.kisi.KisiC;
 import controller.urun.UrunC;
 import model.bilgisayar.Bilgisayar;
 
 public class MainC {
-	private ArrayList <Bilgisayar> bilgisayarlar;
     
     private KisiC kisiCont;
     private UrunC urunCont;
+    private BilgisayarC bilgisayarC;
 
-    public MainC(){
-        bilgisayarlar = new ArrayList<Bilgisayar>();
-        
+    public MainC(){        
         kisiCont = new KisiC();
         urunCont = new UrunC();
+        bilgisayarC = new BilgisayarC();
     }
     
     
     
-    public ArrayList<Bilgisayar> getBilgisayarlar() {
-        return bilgisayarlar;
-    }
-
-    public void setBilgisayarlar(ArrayList<Bilgisayar> bilgisayarlar) {
-        this.bilgisayarlar = bilgisayarlar;
-    }
+    
+    
+    /****************************************************/
 
     public KisiC getKisiCont() {
         return kisiCont;
@@ -40,5 +36,18 @@ public class MainC {
     public UrunC getUrunCont() {
         return urunCont;
     }
+
+    public void setUrunCont(UrunC urunCont) {
+		this.urunCont = urunCont;
+	}
+    
+	public BilgisayarC getBilgisayarC() {
+		return bilgisayarC;
+	}
+
+	public void setBilgisayarC(BilgisayarC bilgisayarC) {
+		this.bilgisayarC = bilgisayarC;
+	}  
+    
 
 }
