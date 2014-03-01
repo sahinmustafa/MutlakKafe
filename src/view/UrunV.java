@@ -134,14 +134,14 @@ public class UrunV extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Ürün Adý", "Barkod", "Birim Fiyatý", "Stok"
+                "Ürün ID","Ürün Adý", "Barkod", "Birim Fiyatý", "Stok"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -198,9 +198,9 @@ public class UrunV extends javax.swing.JFrame {
 
     private void btnSilMousePressed(java.awt.event.MouseEvent evt) {
 
-        String urunAdi = (String) tblUrunList.getValueAt(tblUrunList.getSelectedRow(), 0);
+        int urunID = Integer.parseInt((String) tblUrunList.getValueAt(tblUrunList.getSelectedRow(), 0));
         
-        if(mutlakkafe.MutlakKafe.mainCont.getUrunCont().urunSil(urunAdi)){
+        if(mutlakkafe.MutlakKafe.mainCont.getUrunCont().urunSil(urunID)){
         	DefaultTableModel dtm = (DefaultTableModel) tblUrunList.getModel();
         	dtm.removeRow(tblUrunList.getSelectedRow());
         	tblUrunList.setModel(dtm);

@@ -2,8 +2,10 @@ package model.urun;
 
 import hibernate.HbmIslemler;
 import controller.urun.UrunI;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.HibernateException;
 
 /**
@@ -12,7 +14,7 @@ import org.hibernate.HibernateException;
  */
 public class Urun implements UrunI{
        
-    private int barkod,stok;
+    private int barkod,stok, urunID;
     private double birimFiyat;
     private String urunAdi;
     
@@ -44,12 +46,12 @@ public class Urun implements UrunI{
     }
 
     @Override
-    public boolean urunSil(String urunAdi) {
+    public boolean urunSil(int urunID) {
         
         HbmIslemler hbm = new HbmIslemler();
         
         try {
-            return hbm.sil(urunAdi, Urun.class);
+            return hbm.sil(urunID, Urun.class);
         } catch (HibernateException ex) {         
             ex.printStackTrace();
             throw ex;
@@ -57,12 +59,13 @@ public class Urun implements UrunI{
     }
 
     @Override
-    public boolean urunGuncelle(String urunAdi, Urun yeniUrun) {
+    public boolean urunGuncelle(int urunID, Urun yeniUrun) {
         
         HbmIslemler hbm = new HbmIslemler();
         
         try{
-            return hbm.guncelle(urunAdi, yeniUrun);
+        	
+            return hbm.guncelle(urunID, yeniUrun);
         }catch(HibernateException ex){
             ex.printStackTrace();
             throw ex;
@@ -70,37 +73,47 @@ public class Urun implements UrunI{
     }
 
     @Override
-    public void urunSat(String urunAdi, int miktar) {
+    public void urunSat(int urunID, int miktar) {
         
         HbmIslemler hbm = new HbmIslemler();
-        Urun urun = (Urun) hbm.bilgiGetir(urunAdi, Urun.class);
+        Urun urun = (Urun) hbm.bilgiGetir(urunID, getClass());
         
         int yeniStok = urun.getStok() - miktar;
         
         urun.setStok(yeniStok);
-        hbm.guncelle(urunAdi, urun);
+        hbm.guncelle(urunID, urun);
                
     }
 
     @Override
-    public void urunAl(String urunAdi, int miktar) {
+    public void urunAl(int urunID, int miktar) {
         
         HbmIslemler hbm = new HbmIslemler();        
-        Urun urun = (Urun) hbm.bilgiGetir(urunAdi, Urun.class);
+        Urun urun = (Urun) hbm.bilgiGetir(urunID, getClass());
         
         int yeniMiktar = urun.getStok() + miktar;        
         urun.setStok(yeniMiktar);
-        hbm.guncelle(urunAdi, urun);        
+        hbm.guncelle(urunID, urun);        
     }
     
     
     
     //GETTER AND SETTER
+    
+    
     public int getBarkod() {
         return barkod;
     }
 
-    public void setBarkod(int barkod) {
+    public int getUrunID() {
+		return urunID;
+	}
+
+	public void setUrunID(int urunID) {
+		this.urunID = urunID;
+	}
+
+	public void setBarkod(int barkod) {
         this.barkod = barkod;
     }
 

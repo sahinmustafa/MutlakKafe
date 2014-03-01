@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 import controller.kisi.KisiC;
+import controller.sira.SiraC;
 import controller.urun.UrunC;
 import model.bilgisayar.Bilgisayar;
 
@@ -11,12 +12,14 @@ public class MainC {
     
     private KisiC kisiCont;
     private UrunC urunCont;
+    private SiraC siraCont;
 
     public MainC(){
         bilgisayarlar = new ArrayList<Bilgisayar>();
         
         kisiCont = new KisiC();
         urunCont = new UrunC();
+        siraCont = new SiraC();
     }
     
     
@@ -33,12 +36,14 @@ public class MainC {
         return kisiCont;
     }
 
-    public void setKisiCont(KisiC kisiCont) {
-        this.kisiCont = kisiCont;
-    }
-
     public UrunC getUrunCont() {
         return urunCont;
     }
+
+	public SiraC getSiraCont() {
+		return siraCont;
+	}
+
+    
 
 }

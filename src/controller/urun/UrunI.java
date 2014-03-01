@@ -30,7 +30,7 @@ public interface UrunI{
      * @param urunAdi Urun icin ayýrt edici olan alan.
      * @return Kayýt var ise true deðilse false döner.
      */
-    public boolean urunSil(String urunAdi);
+    public boolean urunSil(int urunID);
     
     
     /**
@@ -38,7 +38,7 @@ public interface UrunI{
      * @param urunAdi Urun için ayýr edici olan alan.
      * @param yeniUrun Güncelennecek olan bilgiler.
      */
-    public boolean urunGuncelle(String urunAdi, Urun yeniUrun);
+    public boolean urunGuncelle(int urunID , Urun yeniUrun);
     
     
     /**
@@ -46,13 +46,13 @@ public interface UrunI{
      * @param urunAdi ürün için ayýrt edici olan alan
      * @param miktar Satýlan ürün miktarý.
      */
-    public void urunSat(String urunAdi, int miktar);
+    public void urunSat(int urunID, int miktar);
     
     
     /**
      * Alýnan ürünün veritabanýndaki bilgileri günceller.
      * @param miktar Alýnan ürün miktarý.
      */
-    public void urunAl(String urunAdi, int miktar);
+    public void urunAl(int urunID, int miktar);
     
 }
