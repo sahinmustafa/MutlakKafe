@@ -80,7 +80,6 @@ public class UrunC implements UrunI{
     }
     
 
-    @SuppressWarnings("finally")
 	@Override
     public boolean urunSil(int urunID) {
         int cevap = JOptionPane.showConfirmDialog(null, 
@@ -111,7 +110,7 @@ public class UrunC implements UrunI{
         return false;
     }
 
-    @SuppressWarnings("finally")
+	@SuppressWarnings("finally")
 	@Override
     public boolean urunGuncelle(int urunID, Urun yeniUrun) {
         try {

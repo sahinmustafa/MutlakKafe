@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
-
 import controller.bilgisayar.BilgisayarC;
 import controller.kisi.KisiC;
 import controller.sira.SiraC;

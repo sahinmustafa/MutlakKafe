@@ -2,6 +2,7 @@
 package hibernate;
 
 import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -32,7 +33,8 @@ public class HbmIslemler {
     
     }
     
-    public boolean sil(int id, Class clas)throws HibernateException{
+    @SuppressWarnings("rawtypes")
+	public boolean sil(int id, Class clas)throws HibernateException{
         
         Session sesion = SessionFactory.getSessionFactory()
                 .openSession();
@@ -56,7 +58,8 @@ public class HbmIslemler {
         }
     }
     
-    public List<? extends Object> list(String hql)throws HibernateException{
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public List<? extends Object> list(String hql)throws HibernateException{
         
         Session sesion = SessionFactory.getSessionFactory()
                 .openSession();
@@ -102,7 +105,8 @@ public class HbmIslemler {
         }
     }
     
-    public Object bilgiGetir(int id, Class clas){
+    @SuppressWarnings("rawtypes")
+	public Object bilgiGetir(int id, Class clas){
         
         Session sesion = SessionFactory.getSessionFactory()
                 .openSession();
