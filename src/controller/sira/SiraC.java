@@ -58,8 +58,7 @@ public class SiraC implements SiraI{
 			sira.ekle(sira);
 			JOptionPane.showMessageDialog(null, "Sýra bilgileri baþarý ile eklendi!",
 					"Sýra Eklendi", JOptionPane.INFORMATION_MESSAGE);
-		
-			
+
 		} catch (HibernateException e) {
 			JOptionPane.showMessageDialog(null, "Sýra bilgileri ekleme sýrasýnda bir hata oluþtu",
 					"Hata", JOptionPane.ERROR_MESSAGE);
